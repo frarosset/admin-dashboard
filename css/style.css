@@ -43,7 +43,16 @@
     --main-font: 'Montserrat', sans-serif;
     --h1-font: 'Montserrat', sans-serif;
 
+    /* Maximum width (including margin) */
+    --dashboard-max-width: min(1440px, 100%);
+
     /*Margins and paddings*/
+    --dashboard-margin: 20px;
+    --dashboard-gap: 5px;
+    --header-padding: 10px;
+    --nav-padding: 10px;
+    --main-padding: 10px;
+
     --h1-margin-top: 15vh;
     --h1-padding: 60px 20px;
     --h1-gap: 10px;
@@ -57,9 +66,6 @@
     --radius: 10px;
     --btn-padding: min(10px, 2vw) 20px;
     --btn-right-margin: 30px;
-
-    /* Maximum column width */
-    --col-width: min(700px, 100%);
 
     /* Animations on hover / focus / ...*/
     --offset-translate-hover: -3px;
@@ -97,16 +103,72 @@ body {
 
 /*****************************************************/
 
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* || Dashboard (general structure) */
+
+.dashboard-container{
+    flex: 1;
+    width: 100%;
+    max-width: var(--dashboard-max-width);
+    padding: var(--dashboard-margin);
+}
+
+.dashboard{
+    height: 100%;
+    width: 100%;
+    border-radius: var(--radius);
+    overflow: hidden;
+
+    display: grid;
+    gap: var(--dashboard-gap);
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content max-content 1fr;
+    grid-template-areas: 
+        'header'
+        'nav'
+        'main';
+}
+
+@media only screen and (min-width: 768px) {
+
+
+}
+
+@media only screen and (min-width: 1024px) {
+    .dashboard{
+        grid-template-columns: max-content 1fr;
+        grid-template-rows: max-content 1fr;
+
+        grid-template-areas: 
+            'nav header'
+            'nav main'
+    }
+
+}
+
+/* || Header */
+
 header{
+    grid-area: header;
     background-color: var(--col-accent-light);
+    padding: var(--header-padding);
 }
 
 nav{
+    grid-area: nav;
     background-color: var(--col-accent-dark);
+    padding: var(--nav-padding);
 }
 
 main{
+    grid-area: main;
     background-color: var(--col-accent-medium);
+    padding: var(--main-padding);
 }
 
 
