@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+:root {
+    /* Colors */
+    --col-white: #f5f3ff;
+    --col-grey: #cbdcd5;
+    --col-black: #474545;
+
+    --col-accent-dark: #7c3aed;
+    --col-accent-medium: #a78bfa;
+    --col-accent-light: #ddd6fe;
+
+    --col-bg: var(--col-white); /*#173f57 = rgb(23,63,87)*/
+
+    --col-txt: var(--col-black);
+    --col-subtxt: var(--col-grey);
+    --col-txt-alt: var(--col-white);
+
+    --col-btn: var(--col-accent-dark);
+    --col-btn-hover: var(--col-grey);
+    --col-btn-txt: var(--col-white);
+    --col-btn-txt-hover: var(--col-bg);
+
+    --col-em: var(--col-accent-light);
+    --col-link: var(--col-accent-light);
+    --col-link-hover: var(--col-accent-dark);
+
+    /*#bb8963;*/
+    --col-shadow: var(--col-black);
+
+    /* Font sizes */
+    --txt-fontsize: 21px;
+    --smaller-txt-fontsize: 0.85rem;
+    --h1-fontsize: 2rem;
+    --h2-fontsize: 1.1rem;
+    --lbl-fontsize: 0.75rem;
+    --btn-fontsize: 1.05rem;
+    --cite-fontsize: 0.5rem;
+    --txt-lineheight: 1.2;
+    --h1-lineheight: auto;
+
+    /* Font family */
+    --main-font: 'Montserrat', sans-serif;
+    --h1-font: 'Montserrat', sans-serif;
+
+    /*Margins and paddings*/
+    --h1-margin-top: 15vh;
+    --h1-padding: 60px 20px;
+    --h1-gap: 10px;
+    --cite-padding: 8px;
+    --main-lr-padding: max(40px, 5vw);
+
+    /* Inputs */
+    --bottom-border-size: 1px;
+
+    /*Buttons*/
+    --radius: 10px;
+    --btn-padding: min(10px, 2vw) 20px;
+    --btn-right-margin: 30px;
+
+    /* Maximum column width */
+    --col-width: min(700px, 100%);
+
+    /* Animations on hover / focus / ...*/
+    --offset-translate-hover: -3px;
+    --scale-translate-hover: 1.05;
+    --time-transition-hover: 0.2s;
+    --scale-translate-a-hover: 1.2;
+}
+
+
+html {
+    background-color: var(--col-bg);
+    color: var(--col-txt);
+    font-family: var(--main-font), sans-serif;
+    font-weight: 400;
+    font-size: var(--txt-fontsize);
+    line-height: var(--txt-lineheight);
+}
+
+* {
+    font-family: inherit;
+    line-height: inherit;
+    color: inherit;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    margin: 0 auto;
+    height: 100vh;
+    /*it is assumed the same for <html>*/
+    width: 100%;
+    /* or max-width -- this avoids horizontal scroll bars */
+}
+
+/*****************************************************/
+
+header{
+    background-color: var(--col-accent-light);
+}
+
+nav{
+    background-color: var(--col-accent-dark);
+}
+
+main{
+    background-color: var(--col-accent-medium);
+}
+
+
+/* || Footer */
+footer {
+    --light-grey: rgb(210, 210, 210);
+    --black: rgb(0, 0, 0);
+    --ftr-fontsize: 12px;
+    --ftr-font: 'Montserrat';
+    --ftr-padding: 5px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: var(--light-grey);
+    color: var(--black);
+    font-family: var(--ftr-font), sans-serif;
+    font-size: var(--ftr-fontsize);
+    font-weight: 400;
+    line-height: 1.2;
+    padding: var(--ftr-padding);
+}
+
+footer i {
+    font-size: 1.3em;
+}
