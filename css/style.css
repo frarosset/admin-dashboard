@@ -29,7 +29,7 @@
     --col-shadow: var(--col-black);
 
     /* Font sizes */
-    --txt-fontsize: 21px;
+    --txt-fontsize: 18px;
     --smaller-txt-fontsize: 0.85rem;
     --h1-fontsize: 2rem;
     --h2-fontsize: 1.1rem;
@@ -49,17 +49,17 @@
     --dashboard-margin: 20px;
     --dashboard-gap: 5px;
     --header-padding: 10px;
-    --main-padding: 10px;
+
 
     --h1-margin-top: 15vh;
     --h1-padding: 60px 20px;
     --h1-gap: 10px;
     --cite-padding: 8px;
-    --main-lr-padding: max(40px, 5vw);
 
     --radius: 10px;   
 
     /* Branding */
+    --branding-fontsize: 1.8rem;
     --branding-part1-font-family: 'Vibur', serif;
     --branding-part2-font-family: 'Rancho', sans-serif;
     --branding-part3-font-family: 'Just Another Hand', sans-serif;
@@ -69,21 +69,25 @@
 
     /* Nav */
     --nav-padding: 15px;
-    --nav-gap: 20px;
+    --nav-gap: 10px;
     --nav-navigation-padding: 2px 6px; 
     --nav-navigation-gap: 2px;
     --nav-navigation-itm-gap: 10px;
-    --nav-navigation-icon-len: 2rem; 
-    --nav-navigation-text-size: 0.7rem;
-    --nav-navigation-icon-tablet-min-len: calc(4*var(--nav-navigation-text-size)); 
+    --nav-navigation-icon-len: 1.5rem; 
+    --nav-navigation-fontsize: 0.7rem;
+    --nav-navigation-icon-tablet-min-len: calc(4*var(--nav-navigation-fontsize)); 
 
-    
     --nav-col-bg: var(--col-black);
     --nav-navigation-txt-col: var(--col-accent-light);
     --nav-navigation-icon-col: var(--col-txt-alt);
     --nav-navigation-icon-col-hover: var(--col-accent-dark);
     --nav-navigation-txt-col-hover: var(--col-black);
     --nav-navigation-bg-col-hover: var(--col-white);
+
+    /* Main */
+    --main-padding: 10px;
+    --main-gap: 5px;
+    --main-h2-fontsize: 1.2rem;
 
     /*Buttons*/
 
@@ -196,6 +200,7 @@ nav{
 
 a.branding{
     text-align: center;
+    font-size: var(--branding-fontsize);
 }
 
 a.branding,
@@ -249,7 +254,7 @@ ul.navigation{
     display: flex;
     flex-direction: column;
     gap: var(--nav-navigation-gap);
-    font-size: var(--nav-navigation-text-size);
+    font-size: var(--nav-navigation-fontsize);
     color: var(--nav-navigation-txt-col);
 }
 
@@ -258,7 +263,7 @@ ul.navigation{
     flex-direction: row;
     align-items: center;
     gap: var(--nav-navigation-itm-gap);
-    font-size: var(--nav-navigation-text-size);
+    font-size: var(--nav-navigation-fontsize);
     border-radius: var(--radius);
     padding: var(--nav-navigation-padding);
 }
@@ -357,6 +362,52 @@ main{
     grid-area: main;
     background-color: var(--col-accent-medium);
     padding: var(--main-padding);
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+        'projects'
+        'announcements'
+        'trending';
+    grid-gap: var(--main-gap);
+}
+
+main h2{
+    font-size: var(--main-h2-fontsize);
+}
+
+main .main-projects{
+    grid-area: projects;
+    background-color: red;
+}
+
+main .main-announcements{
+    grid-area: announcements;
+    background-color: green;
+}
+
+main .main-trending{
+    grid-area: trending;
+    background-color: blue;
+}
+
+@media only screen and (min-width: 768px) {
+    main{
+        grid-template-rows: auto auto;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+            'projects projects'
+            'announcements trending';
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    main{
+        grid-template-rows: auto auto;
+        grid-template-columns: 2fr 1fr;
+        grid-template-areas: 
+            'projects announcements'
+            'projects trending';
+    }
 }
 
 
