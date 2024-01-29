@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Vibur&family=Rancho&family=Just+Another+Hand&display=swap');
 
 :root {
     /* Colors */
@@ -41,7 +41,6 @@
 
     /* Font family */
     --main-font: 'Montserrat', sans-serif;
-    --h1-font: 'Montserrat', sans-serif;
 
     /* Maximum width (including margin) */
     --dashboard-max-width: min(1440px, 100%);
@@ -60,6 +59,14 @@
 
     --radius: 10px;   
 
+    /* Branding */
+    --branding-part1-font-family: 'Vibur', serif;
+    --branding-part2-font-family: 'Rancho', sans-serif;
+    --branding-part3-font-family: 'Just Another Hand', sans-serif;
+    --branding-part1-color: var(--col-white);
+    --branding-part2-color: var(--col-accent-medium);
+    --branding-part3-color: var(--col-accent-light);    
+
     /* Nav */
     --nav-padding: 15px;
     --nav-gap: 20px;
@@ -71,10 +78,10 @@
     --nav-navigation-icon-tablet-min-len: calc(4*var(--nav-navigation-text-size)); 
 
     
-    --nav-col-bg: var(--col-accent-dark);
+    --nav-col-bg: var(--col-black);
     --nav-navigation-txt-col: var(--col-accent-light);
     --nav-navigation-icon-col: var(--col-txt-alt);
-    --nav-navigation-icon-col-hover: var(--nav-col-bg);
+    --nav-navigation-icon-col-hover: var(--col-accent-dark);
     --nav-navigation-txt-col-hover: var(--col-black);
     --nav-navigation-bg-col-hover: var(--col-white);
 
@@ -164,7 +171,6 @@ body{
             'nav header'
             'nav main'
     }
-
 }
 
 /* || Header */
@@ -184,8 +190,58 @@ nav{
     flex-direction: column;
     gap: var(--nav-gap);
     background-color: var(--nav-col-bg);
-    color: var(--col-white);
 }
+
+/*---------------*/
+
+a.branding{
+    text-align: center;
+}
+
+a.branding,
+a.branding:hover,
+a.branding:hover,
+a.branding:active,
+a.branding:visited{
+    text-decoration: none;
+}
+
+.branding-part1{
+    font-family: var(--branding-part1-font-family);
+    font-weight: normal;
+    color: var(--branding-part1-color); 
+}
+
+.branding-part2{
+    font-family: var(--branding-part2-font-family);    
+    font-weight: bolder;
+    color: var(--branding-part2-color);
+}
+
+.branding-part3{
+    font-family: var(--branding-part3-font-family); 
+    font-weight: normal;
+    color: var(--branding-part3-color);
+}
+
+@media only screen and (min-width: 1024px) {
+    a.branding{
+        text-align: left;
+    }
+}
+
+/*---------------*/
+
+hr{
+    background-color: var(--col-accent-light);
+    width: 95%;
+    height: 1px;
+    border-width:0;
+    margin: 0 auto;
+    border-radius: var(--radius);
+}
+
+/*---------------*/
 
 ul.navigation{
     list-style: none;
@@ -240,7 +296,7 @@ ul.navigation{
 
 
 /* Tablet only*/
-@media only screen and (min-width: 768px) and (max-width: 1024px){
+@media only screen and (min-width: 768px) and (max-width: 1023px){
     ul.navigation{
         flex-direction: row;
     }
