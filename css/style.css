@@ -93,9 +93,9 @@
     --main-box-bg-color:                 var(--col-white);
     --main-box-padding:                  6px;
 
-    --main-trending-list-gap:            6px;
-    --trending-item-padding:             8px 6px;
-    --trending-item-gap:                 5px 10px;
+    --main-list-gap:                     6px;
+    --main-item-padding:                 8px 6px;
+    --main-item-gap:                     5px 10px;
     --trending-item-hover-color:         white;
     --trending-avatar-icon-len:          2.2rem;;
     --trending-username-fontsize:        0.7rem;
@@ -409,6 +409,21 @@ main h2{
     box-shadow: var(--outset-shadow);
 }
 
+.main-list{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--main-list-gap);
+}
+
+.main-item{
+    display: grid;
+    align-items: center;
+    gap: var(--main-item-gap);
+    padding: var(--main-item-padding);
+    border-radius: var(--radius);
+}
+
 /* -------- */
 
 main .main-projects{
@@ -416,9 +431,26 @@ main .main-projects{
     background-color: red;
 }
 
+/* -------- */
+
 main .main-announcements{
     grid-area: announcements;
-    background-color: green;
+}
+
+.main-announcements-item{
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+        'title'
+        'description';
+    }
+
+.main-announcements-item .title{
+    grid-area: title;
+}
+
+.main-announcements-item .description{
+    grid-area: description;
 }
 
 /* -------- */
@@ -427,27 +459,13 @@ main .main-trending{
     grid-area: trending;
 }
 
-.main-trending-list{
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: var(--main-trending-list-gap);
-}
-
 .main-trending-item{
-    display: grid;
     grid-template-rows: auto auto;
     grid-template-columns: auto 1fr;
     grid-template-areas: 
         'avatar username'
         'avatar project-name';
-    align-items: center;
-    gap: var(--trending-item-gap);
-    padding: var(--trending-item-padding);
-    border-radius: var(--radius);
 }
-
-
 
 .main-trending-item::before{
     grid-area: avatar;
@@ -461,29 +479,39 @@ main .main-trending{
     background-position: center;
 }
 
-
-
 .main-trending-item .username{
     grid-area: username;
+}
+
+.main-trending-item .project-name{
+    grid-area: project-name;
+}
+
+
+.main-announcements-item .title,
+.main-trending-item .username{
     color: var(--trending-username-color);
     font-size: var(--trending-username-fontsize);
     font-weight: bold;
 }
 
+.main-announcements-item .description,
 .main-trending-item .project-name{
-    grid-area: project-name;
     color: var(--trending-project-name-color);
     font-size: var(--trending-project-name-fontsize);
 }
 
 
-
+.main-announcements-item:hover,
+.main-announcements-item:focus,
 .main-trending-item:hover,
 .main-trending-item:focus{
     background-color: var(--trending-item-hover-color);
     box-shadow: var(--inset-shadow);
 }
 
+.main-announcements-item:hover .title,
+.main-announcements-item:focus .title,
 .main-trending-item:hover .username,
 .main-trending-item:focus .username{
     color: var(--trending-username-hover-color);
@@ -495,6 +523,10 @@ main .main-trending{
     color: var(--trending-project-name-hover-color);
     font-weight: bold;
 }
+
+
+
+
 
 
 
