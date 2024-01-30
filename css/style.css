@@ -197,8 +197,8 @@ body{
     grid-template-columns: 1fr;
     grid-template-rows: max-content max-content 1fr;
     grid-template-areas: 
-        'header'
         'nav'
+        'header'
         'main';
 }
 
@@ -224,6 +224,45 @@ header{
     grid-area: header;
     background-color: var(--col-white);
     padding: var(--header-padding);
+    display: grid;
+    grid-template-areas: 
+        'actions1'
+        'hello'
+        'actions2';
+}
+
+
+@media only screen and (min-width: 768px) {
+
+
+}
+
+@media only screen and (min-width: 1024px) {
+    header{
+        grid-area: header;
+        background-color: var(--col-white);
+        padding: var(--header-padding);
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-areas: 
+            'actions1 actions1'
+            'hello actions2';
+    }
+}
+
+.header-actions-1{
+    grid-area: actions1;
+    background-color:red;
+}
+
+.header-hello{
+    grid-area: hello;
+    background-color:green;
+}
+
+.header-actions-2{
+    grid-area: actions2;
+    background-color:blue;
 }
 
 /* || Nav (Sidebar) */
