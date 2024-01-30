@@ -19,7 +19,7 @@
     --col-btn: var(--col-accent-dark);
     --col-btn-hover: var(--col-grey);
     --col-btn-txt: var(--col-white);
-    --col-btn-txt-hover: var(--col-bg);
+    --col-btn-txt-hover: var(--col-white);
 
     --col-em: var(--col-accent-light);
     --col-link: var(--col-accent-light);
@@ -68,26 +68,47 @@
     --branding-part3-color: var(--col-accent-light);    
 
     /* Nav */
-    --nav-padding: 15px;
-    --nav-gap: 10px;
-    --nav-navigation-padding: 2px 6px; 
-    --nav-navigation-gap: 2px;
-    --nav-navigation-itm-gap: 10px;
-    --nav-navigation-icon-len: 1.5rem; 
-    --nav-navigation-fontsize: 0.7rem;
+    --nav-padding:                      15px;
+    --nav-gap:                          10px;
+    --nav-navigation-itm-padding:       2px 6px; 
+    --nav-navigation-gap:               2px;
+    --nav-navigation-itm-gap:           10px;
+    --nav-navigation-icon-len:          1.5rem; 
+    --nav-navigation-fontsize:          0.7rem;
     --nav-navigation-icon-tablet-min-len: calc(4*var(--nav-navigation-fontsize)); 
 
-    --nav-col-bg: var(--col-black);
-    --nav-navigation-txt-col: var(--col-accent-light);
-    --nav-navigation-icon-col: var(--col-txt-alt);
-    --nav-navigation-icon-col-hover: var(--col-accent-dark);
-    --nav-navigation-txt-col-hover: var(--col-black);
-    --nav-navigation-bg-col-hover: var(--col-white);
+    --nav-col-bg:                       var(--col-black);
+    --nav-navigation-txt-col:           var(--col-accent-light);
+    --nav-navigation-icon-col:          var(--col-txt-alt);
+    --nav-navigation-icon-col-hover:    var(--col-accent-dark);
+    --nav-navigation-txt-col-hover:     var(--col-black);
+    --nav-navigation-bg-col-hover:      var(--col-white);
 
     /* Main */
-    --main-padding: 10px;
-    --main-gap: 5px;
-    --main-h2-fontsize: 1.2rem;
+    --main-bg-color:                     var(--col-accent-light);
+    --main-padding:                      15px;
+    --main-gap:                          26px;
+    --main-h2-fontsize:                  1.2rem;
+    --main-child-hdr-gap:                8px;
+    --main-box-bg-color:                 var(--col-white);
+    --main-box-padding:                  6px;
+
+    --main-trending-list-gap:            6px;
+    --trending-item-padding:             8px 6px;
+    --trending-item-gap:                 5px 10px;
+    --trending-item-hover-color:         white;
+    --trending-avatar-icon-len:          2.2rem;;
+    --trending-username-fontsize:        0.7rem;
+    --trending-project-name-fontsize:    0.9rem;
+    --trending-username-color:           var(--col-black);
+    --trending-project-name-color:       var(--col-black);
+    --trending-username-hover-color:     var(--col-accent-dark);
+    --trending-project-name-hover-color: var(--col-black); 
+
+
+    /* Shadows */
+    --outset-shadow: 2px 2px 8px var(--col-accent-medium);
+    --inset-shadow: 2px 2px 2px var(--col-accent-light) inset;
 
     /*Buttons*/
 
@@ -103,7 +124,7 @@
 
 
 html {
-    background-color: var(--col-bg);
+    background-color: white;
     color: var(--col-txt);
     font-family: var(--main-font), sans-serif;
     font-weight: 400;
@@ -181,7 +202,7 @@ body{
 
 header{
     grid-area: header;
-    background-color: var(--col-accent-light);
+    background-color: var(--col-white);
     padding: var(--header-padding);
 }
 
@@ -265,7 +286,7 @@ ul.navigation{
     gap: var(--nav-navigation-itm-gap);
     font-size: var(--nav-navigation-fontsize);
     border-radius: var(--radius);
-    padding: var(--nav-navigation-padding);
+    padding: var(--nav-navigation-itm-padding);
 }
 
 .nav-itm::before{
@@ -360,7 +381,7 @@ ul.navigation{
 
 main{
     grid-area: main;
-    background-color: var(--col-accent-medium);
+    background-color: var(--main-bg-color);
     padding: var(--main-padding);
     display: grid;
     grid-template-rows: auto auto auto;
@@ -371,9 +392,24 @@ main{
     grid-gap: var(--main-gap);
 }
 
+main>*{
+    display: flex;
+    flex-direction: column;
+    gap: var(--main-child-hdr-gap);
+}
+
 main h2{
     font-size: var(--main-h2-fontsize);
 }
+
+.main-box{
+    background-color: var(--main-box-bg-color);
+    padding: var(--main-box-padding);
+    border-radius: var(--radius);
+    box-shadow: var(--outset-shadow);
+}
+
+/* -------- */
 
 main .main-projects{
     grid-area: projects;
@@ -385,10 +421,101 @@ main .main-announcements{
     background-color: green;
 }
 
+/* -------- */
+
 main .main-trending{
     grid-area: trending;
-    background-color: blue;
 }
+
+.main-trending-list{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--main-trending-list-gap);
+}
+
+.main-trending-item{
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: 
+        'avatar username'
+        'avatar project-name';
+    align-items: center;
+    gap: var(--trending-item-gap);
+    padding: var(--trending-item-padding);
+    border-radius: var(--radius);
+}
+
+
+
+.main-trending-item::before{
+    grid-area: avatar;
+    display: inline-block;
+    content:"";
+    width: var(--trending-avatar-icon-len); 
+    height: var(--trending-avatar-icon-len); 
+    background-size: var(--trending-avatar-icon-len) var(--trending-avatar-icon-len);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+
+.main-trending-item .username{
+    grid-area: username;
+    color: var(--trending-username-color);
+    font-size: var(--trending-username-fontsize);
+    font-weight: bold;
+}
+
+.main-trending-item .project-name{
+    grid-area: project-name;
+    color: var(--trending-project-name-color);
+    font-size: var(--trending-project-name-fontsize);
+}
+
+
+
+.main-trending-item:hover,
+.main-trending-item:focus{
+    background-color: var(--trending-item-hover-color);
+    box-shadow: var(--inset-shadow);
+}
+
+.main-trending-item:hover .username,
+.main-trending-item:focus .username{
+    color: var(--trending-username-hover-color);
+    /* font-weight: normal; */
+}
+
+.main-trending-item:hover .project-name,
+.main-trending-item:focus .project-name{
+    color: var(--trending-project-name-hover-color);
+    font-weight: bold;
+}
+
+
+
+.main-trending-item-1::before{
+    background-image: url(../img/avatar_1.svg);
+}
+
+.main-trending-item-2::before{
+    background-image: url(../img/avatar_2.svg);
+}
+
+.main-trending-item-3::before{
+    background-image: url(../img/avatar_3.svg);
+}
+
+.main-trending-item-4::before{
+    background-image: url(../img/avatar_4.svg);
+}
+
+
+/* --------- */
 
 @media only screen and (min-width: 768px) {
     main{
