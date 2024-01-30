@@ -61,6 +61,13 @@
     --main-project-description-max-lines: 6;
     --main-announcements-description-max-lines: 3;
 
+    /* Header */
+    --hello-greetings-fontsize: 0.7rem;
+    --hello-myinfo-fontsize:    1.5rem;
+    --hello-avatar-icon-len:    4rem;
+    --hello-myusername-fontsize: 0.8em;
+    --hello-row-gap:             0px;
+
     /* Branding */
     --branding-fontsize: 1.8rem;
     --branding-part1-font-family: 'Vibur', serif;
@@ -124,6 +131,7 @@
     --trending-project-name-color:       var(--col-black);
     --trending-username-hover-color:     var(--col-accent-dark);
     --trending-project-name-hover-color: var(--col-black); 
+
 
 
     /* Shadows */
@@ -255,10 +263,55 @@ header{
     background-color:red;
 }
 
+/***************/
+
 .header-hello{
     grid-area: hello;
-    background-color:green;
+    /* background-color:green; */
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: 
+        'avatar greetings'
+        'avatar myinfo';
+    row-gap: var(--hello-row-gap) !important; /*override main-item  gap*/
 }
+
+.header-hello .greetings{
+    grid-area: greetings;
+    font-size: var(--hello-greetings-fontsize);
+    align-self: end;
+}
+
+.header-hello .myinfo{
+    grid-area: myinfo;
+    font-size: var(--hello-myinfo-fontsize);
+    align-self: start;
+}
+
+.header-hello .myinfo .myname{
+    font-weight: bold;
+}
+
+.myusername{
+    font-size: var(--hello-myusername-fontsize);
+    font-style: italic;
+}
+
+.header-hello::before{
+    grid-area: avatar;
+    display: inline-block;
+    content:"";
+    width: var(--hello-avatar-icon-len); 
+    height: var(--hello-avatar-icon-len); 
+    background-size: var(--hello-avatar-icon-len) var(--hello-avatar-icon-len);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(../img/avatar.svg);
+}
+
+/************/
 
 .header-actions-2{
     grid-area: actions2;
