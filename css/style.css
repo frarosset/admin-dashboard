@@ -13,8 +13,8 @@
     --col-bg: var(--col-white); /*#173f57 = rgb(23,63,87)*/
 
     --col-txt: var(--col-black);
-    --col-subtxt: var(--col-grey);
     --col-txt-alt: var(--col-white);
+    --col-highlight: var(--col-accent-dark);
 
     --col-btn: var(--col-accent-dark);
     --col-btn-hover: var(--col-grey);
@@ -58,6 +58,9 @@
 
     --radius: 10px;   
 
+    --main-project-description-max-lines: 6;
+    --main-announcements-description-max-lines: 3;
+
     /* Branding */
     --branding-fontsize: 1.8rem;
     --branding-part1-font-family: 'Vibur', serif;
@@ -96,6 +99,23 @@
     --main-list-gap:                     6px;
     --main-item-padding:                 8px 6px;
     --main-item-gap:                     5px 10px;
+
+    --main-projects-gap:                  16px;
+    --main-project-image-gap:             20px;
+    --main-project-actions-extra-gap-top: 10px;
+    --main-project-actions-gap:           5px;
+    --main-project-image-width:           5%;
+    --main-project-hover-image-width:     25%;
+
+    --main-box-project-max-width: 300px;
+
+
+    --project-title-color:              var(--col-txt);
+    --project-title-fontsize:           1.1rem;
+    --project-description-name-color:   var(--col-txt);
+    --project-title-hover-color:        var(--col-highlight);
+    --project-description-name-fontsize:0.8rem;
+
     --trending-item-hover-color:         white;
     --trending-avatar-icon-len:          2.2rem;;
     --trending-username-fontsize:        0.7rem;
@@ -267,6 +287,34 @@ hr{
     border-radius: var(--radius);
 }
 
+
+
+.main-project .title,
+.main-project .description,
+.main-announcements-item .description{
+    overflow: hidden;
+    width: 100%;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.main-project .title{
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+}
+
+.main-project .description{
+    -webkit-line-clamp: var(--main-project-description-max-lines);
+    line-clamp: var(--main-project-description-max-lines);
+    /* Show empty lines if the text does not span the maximum number of lines*/
+    min-height: calc(calc(1em*var(--txt-lineheight))*var(--main-project-description-max-lines));
+}
+
+.main-announcements-item .description{
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+}
+
 /*---------------*/
 
 ul.navigation{
@@ -384,7 +432,7 @@ main{
     background-color: var(--main-bg-color);
     padding: var(--main-padding);
     display: grid;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: min-content 1fr;
     grid-template-areas: 
         'projects'
         'announcements'
@@ -428,7 +476,127 @@ main h2{
 
 main .main-projects{
     grid-area: projects;
-    background-color: red;
+}
+
+.main-projects-list{
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(var(--main-box-project-max-width), 100%), 1fr));
+    gap: var(--main-projects-gap);
+}
+
+.main-box-project.main-box{
+    display: grid;
+    grid-template-columns: var(--main-project-image-width) 1fr;
+    grid-template-areas:
+        'image item';
+}
+
+.main-box-project::before {
+    grid-area: image;
+    content: '';
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: var(--radius) 0 0 var(--radius);
+}
+
+.main-box-project-1::before {
+    background-image: url('https://picsum.photos/200/300?random=1');
+}
+.main-box-project-2::before {
+    background-image: url('https://picsum.photos/200/300?random=2');
+}
+.main-box-project-3::before {
+    background-image: url('https://picsum.photos/200/300?random=3');
+}
+.main-box-project-4::before {
+    background-image: url('https://picsum.photos/200/300?random=4');
+}
+.main-box-project-5::before {
+    background-image: url('https://picsum.photos/200/300?random=5');
+}
+.main-box-project-6::before {
+    background-image: url('https://picsum.photos/200/300?random=6');
+}
+
+.main-project{
+    grid-area: item;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+        'title'
+        'description'
+        'actions';
+    border-radius: 0 var(--radius)var(--radius) 0;
+    padding-left: var(--main-project-image-gap);
+}
+
+.main-project .title{
+    grid-area: title;
+    color: var(--project-title-color);
+    font-size: var(--project-title-fontsize);
+    font-weight: bold;
+}
+
+.main-project .description{
+    grid-area: description;
+    color: var(--project-description-name-color);
+    font-size: var(--project-description-name-fontsize);
+}
+
+.main-project .actions{
+    grid-area: actions;
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--main-project-actions-gap);
+    font-size: 0;
+    padding-top:  var(--main-project-actions-extra-gap-top);
+}
+
+.main-project .actions a::before{
+    display: inline-block;
+    content:"";
+    width: var(--nav-navigation-icon-len); 
+    height: var(--nav-navigation-icon-len); 
+    background-size: var(--nav-navigation-icon-len) var(--nav-navigation-icon-len);
+    background-color: var(--col-txt);
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+}
+
+.main-box-project:hover{
+    grid-template-columns: var(--main-project-hover-image-width) 1fr;
+}
+
+.main-box-project:hover .main-project{
+    background-color: var(--trending-item-hover-color);
+    box-shadow: var(--inset-shadow);
+}
+
+.main-box-project:hover .main-project .title{
+    color: var(--col-highlight);
+}
+
+.main-box-project .actions a:hover::before{
+    background-color: var(--col-highlight);
+}
+
+
+
+.main-project .actions a.like::before{
+    mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>star-plus-outline</title><path d="M5.8 21L7.4 14L2 9.2L9.2 8.6L12 2L14.8 8.6L22 9.2L18.8 12H18C17.3 12 16.6 12.1 15.9 12.4L18.1 10.5L13.7 10.1L12 6.1L10.3 10.1L5.9 10.5L9.2 13.4L8.2 17.7L12 15.4L12.5 15.7C12.3 16.2 12.1 16.8 12.1 17.3L5.8 21M17 14V17H14V19H17V22H19V19H22V17H19V14H17Z" /></svg>');
+}
+
+.main-project .actions a.watch::before{
+    mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>eye-plus-outline</title><path d="M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C12.36,19.5 12.72,19.5 13.08,19.45C13.03,19.13 13,18.82 13,18.5C13,18.14 13.04,17.78 13.1,17.42C12.74,17.46 12.37,17.5 12,17.5C8.24,17.5 4.83,15.36 3.18,12C4.83,8.64 8.24,6.5 12,6.5C15.76,6.5 19.17,8.64 20.82,12C20.7,12.24 20.56,12.45 20.43,12.68C21.09,12.84 21.72,13.11 22.29,13.5C22.56,13 22.8,12.5 23,12C21.27,7.61 17,4.5 12,4.5M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M18,14.5V17.5H15V19.5H18V22.5H20V19.5H23V17.5H20V14.5H18Z" /></svg>');
+}
+
+.main-project .actions a.fork::before{
+    mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>source-fork</title><path d="M6,2A3,3 0 0,1 9,5C9,6.28 8.19,7.38 7.06,7.81C7.15,8.27 7.39,8.83 8,9.63C9,10.92 11,12.83 12,14.17C13,12.83 15,10.92 16,9.63C16.61,8.83 16.85,8.27 16.94,7.81C15.81,7.38 15,6.28 15,5A3,3 0 0,1 18,2A3,3 0 0,1 21,5C21,6.32 20.14,7.45 18.95,7.85C18.87,8.37 18.64,9 18,9.83C17,11.17 15,13.08 14,14.38C13.39,15.17 13.15,15.73 13.06,16.19C14.19,16.62 15,17.72 15,19A3,3 0 0,1 12,22A3,3 0 0,1 9,19C9,17.72 9.81,16.62 10.94,16.19C10.85,15.73 10.61,15.17 10,14.38C9,13.08 7,11.17 6,9.83C5.36,9 5.13,8.37 5.05,7.85C3.86,7.45 3,6.32 3,5A3,3 0 0,1 6,2M6,4A1,1 0 0,0 5,5A1,1 0 0,0 6,6A1,1 0 0,0 7,5A1,1 0 0,0 6,4M18,4A1,1 0 0,0 17,5A1,1 0 0,0 18,6A1,1 0 0,0 19,5A1,1 0 0,0 18,4M12,18A1,1 0 0,0 11,19A1,1 0 0,0 12,20A1,1 0 0,0 13,19A1,1 0 0,0 12,18Z" /></svg>');
 }
 
 /* -------- */
@@ -495,7 +663,11 @@ main .main-trending{
     font-weight: bold;
 }
 
-.main-announcements-item .description,
+.main-announcements-item .description{
+    color: var(--trending-project-name-color);
+    font-size: var(--trending-username-fontsize);
+}
+
 .main-trending-item .project-name{
     color: var(--trending-project-name-color);
     font-size: var(--trending-project-name-fontsize);
@@ -514,13 +686,11 @@ main .main-trending{
 .main-announcements-item:focus .title,
 .main-trending-item:hover .username,
 .main-trending-item:focus .username{
-    color: var(--trending-username-hover-color);
-    /* font-weight: normal; */
+    color: var(--col-highlight);
 }
 
 .main-trending-item:hover .project-name,
 .main-trending-item:focus .project-name{
-    color: var(--trending-project-name-hover-color);
     font-weight: bold;
 }
 
@@ -551,7 +721,6 @@ main .main-trending{
 
 @media only screen and (min-width: 768px) {
     main{
-        grid-template-rows: auto auto;
         grid-template-columns: 1fr 1fr;
         grid-template-areas: 
             'projects projects'
@@ -561,7 +730,6 @@ main .main-trending{
 
 @media only screen and (min-width: 1024px) {
     main{
-        grid-template-rows: auto auto;
         grid-template-columns: 2fr 1fr;
         grid-template-areas: 
             'projects announcements'
