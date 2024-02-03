@@ -39,6 +39,8 @@
     --txt-lineheight: 1.2;
     --h1-lineheight: auto;
 
+    --header-fontsize: 1rem;
+
     /* Font family */
     --main-font: 'Montserrat', sans-serif;
 
@@ -49,7 +51,7 @@
     --dashboard-margin: 20px;
     --dashboard-gap: 5px;
     --header-padding: 10px;
-
+    --header-gap: 20px;
 
     --h1-margin-top: 15vh;
     --h1-padding: 60px 20px;
@@ -136,6 +138,7 @@
 
     /* Shadows */
     --outset-shadow: 2px 2px 8px var(--col-accent-medium);
+    --outset-shadow-btn-active: 2px 2px 5px var(--col-accent-medium);
     --inset-shadow: 2px 2px 2px var(--col-accent-light) inset;
 
     /*Buttons*/
@@ -183,6 +186,12 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+/* General */
+
+ul{
+    list-style: none;    
 }
 
 /* || Dashboard (general structure) */
@@ -237,6 +246,7 @@ header{
         'actions1'
         'hello'
         'actions2';
+    gap: var(--header-gap);
 }
 
 
@@ -260,6 +270,7 @@ header{
 
 .header-actions-1{
     grid-area: actions1;
+    font-size: var(--header-fontsize);
     background-color:red;
 }
 
@@ -315,7 +326,40 @@ header{
 
 .header-actions-2{
     grid-area: actions2;
-    background-color:blue;
+    /* background-color:blue; */
+}
+
+.header-actions-2 .main-item.actions{
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    justify-items: center;
+    align-items: end;
+}
+
+.header-actions-2 .main-item.actions li{
+    width: 100%;
+}
+
+.header-actions-2 button{
+    background-color: var(--col-accent-dark);
+    color: var(--col-txt-alt);
+    box-shadow: var(--outset-shadow);
+    border: none;
+    width: 100%;
+    font-size: var(--header-fontsize);
+}
+
+.header-actions-2 button:hover{
+    background-color: var(--col-accent-light);
+    color: var(--col-txt);
+    font-weight: bold;
+    border: none;
+}
+
+.header-actions-2 button:active{
+    border: none;
+    box-shadow: var(--outset-shadow-btn-active);
 }
 
 /* || Nav (Sidebar) */
@@ -366,6 +410,10 @@ a.branding:visited{
     a.branding{
         text-align: left;
     }
+
+    .header-actions-2 .main-item.actions{
+        margin-top: 0;
+    }
 }
 
 /*---------------*/
@@ -410,7 +458,6 @@ hr{
 /*---------------*/
 
 ul.navigation{
-    list-style: none;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -550,7 +597,6 @@ main h2{
 }
 
 .main-list{
-    list-style: none;
     display: flex;
     flex-direction: column;
     gap: var(--main-list-gap);
@@ -571,7 +617,6 @@ main .main-projects{
 }
 
 .main-projects-list{
-    list-style: none;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(var(--main-box-project-max-width), 100%), 1fr));
     gap: var(--main-projects-gap);
@@ -640,7 +685,6 @@ main .main-projects{
 
 .main-project .actions{
     grid-area: actions;
-    list-style: none;
     display: flex;
     justify-content: flex-end;
     gap: var(--main-project-actions-gap);
