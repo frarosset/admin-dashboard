@@ -74,6 +74,10 @@
     --hello-myusername-fontsize: 0.8em;
     --hello-row-gap:             0px;
 
+    --header-btn-fontsize: 6px;
+    --header-btn-max-width: 3em;
+    --header-btn-padding-tb: 2px;
+
     /* Branding */
     --branding-fontsize: 1.8rem;
     --branding-part1-font-family: 'Vibur', serif;
@@ -117,8 +121,8 @@
     --main-project-image-gap:             20px;
     --main-project-actions-extra-gap-top: 10px;
     --main-project-actions-gap:           5px;
-    --main-project-image-width:           5%;
-    --main-project-hover-image-width:     25%;
+    --main-project-image-width:           25%;
+    --main-project-hover-image-width:     5%;
 
     --main-box-project-max-width: 300px;
 
@@ -426,20 +430,28 @@ header{
 
 .header-actions-2 .actions li{
     width: 100%;
-    max-width: 5em;
+    max-width: var( --header-btn-max-width);
 }
 
 .header-actions-2 button{
-    background-color: var(--col-accent-dark);
-    color: var(--col-txt-alt);
-    box-shadow: var(--outset-shadow-btn-active);
+    padding-top: var(--header-btn-padding-tb);
+    padding-bottom: var(--header-btn-padding-tb);
+    background-color: inherit;
+    color: var(--col-txt);
+    /* box-shadow: var(--outset-shadow-btn-active); */
     border: none;
     width: 100%;
-    font-size: var(--header-fontsize);
+    
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    font-size: var(--header-btn-fontsize);
 }
 
 .header-actions-2 button:hover{
-    background-color: var(--col-accent-light);
+    background-color: white;
     color: var(--col-txt);
     box-shadow: var(--outset-shadow);
     font-weight: bold;
@@ -450,6 +462,35 @@ header{
     border: none;
     box-shadow: var(--outset-shadow-btn-active);
 }
+
+.header-actions-2 button::before{
+    display: inline-block;
+    content:"";
+    width: var(--nav-navigation-icon-len); 
+    height: var(--nav-navigation-icon-len); 
+    background-size: var(--nav-navigation-icon-len) var(--nav-navigation-icon-len);
+    background-color:var(--col-txt);
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+}
+
+.header-actions-2 button:hover::before{
+    background-color: var(--col-highlight);
+}
+
+
+
+.header-actions-2 button.new::before{
+    mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus-thick</title><path d="M20 14H14V20H10V14H4V10H10V4H14V10H20V14Z" /></svg>');
+}
+.header-actions-2 button.upload::before{
+    mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>upload</title><path d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z" /></svg>');
+}
+.header-actions-2 button.share::before{
+    mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>share-variant</title><path d="M18,16.08C17.24,16.08 16.56,16.38 16.04,16.85L8.91,12.7C8.96,12.47 9,12.24 9,12C9,11.76 8.96,11.53 8.91,11.3L15.96,7.19C16.5,7.69 17.21,8 18,8A3,3 0 0,0 21,5A3,3 0 0,0 18,2A3,3 0 0,0 15,5C15,5.24 15.04,5.47 15.09,5.7L8.04,9.81C7.5,9.31 6.79,9 6,9A3,3 0 0,0 3,12A3,3 0 0,0 6,15C6.79,15 7.5,14.69 8.04,14.19L15.16,18.34C15.11,18.55 15.08,18.77 15.08,19C15.08,20.61 16.39,21.91 18,21.91C19.61,21.91 20.92,20.61 20.92,19A2.92,2.92 0 0,0 18,16.08Z" /></svg>');
+}
+
 
 /* || Nav (Sidebar) */
 
