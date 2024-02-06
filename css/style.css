@@ -602,11 +602,20 @@ main h2{
     display: grid;
     grid-template-columns: 1fr;
     grid-template-areas:
-        'title'
-        'description'
+        'info'
         'actions';
     border-radius: 0 var(--radius) var(--radius) 0;
     padding-left: var(--main-itm-project-image-gap);
+}
+
+.main-itm-project a{
+    grid-area: info;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        'title'
+        'description';
+    gap: var(--main-itm-gap);
 }
 
 .main-itm-project .title{
