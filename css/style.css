@@ -84,7 +84,7 @@
     --header-search-padding-tb: 3px;
     --header-search-padding-lr: calc(var(--input-radius)/2);
     --header-btn-padding-tb:    2px;
-    --header-btn-max-width:     3em; 
+    --header-btn-max-width:     calc(calc(var(--radius)) + 2.5em); 
     
     --nav-padding:              15px;
     --nav-gap:                  10px;
@@ -100,6 +100,7 @@
     --main-list-gap:            6px;
     --main-itm-padding:         8px 6px;
     --main-itm-gap:             5px 10px;
+    --main-itm-buttons-gap:     2px;
 
     --main-projects-list-gap:     16px;
     --main-box-project-max-width: 300px; 
@@ -353,7 +354,7 @@ header{
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    gap: var(--main-itm-gap);
+    gap: var(--main-itm-buttons-gap);
 }
 
 /* Search input (in header actions 1) */
@@ -411,19 +412,22 @@ header{
     flex-direction: column;
     align-items: center;
     gap: 0;
-    font-size: var(--header-btn-fontsize);
+    font-size: 0;
+    line-height: calc(var(--txt-lineheight)*var(--header-btn-fontsize));
 }
 
 .header-actions-2 button:hover{
-    background-color: var(--header-btn-bg-col-hover);
-    box-shadow: var(--outset-shadow);
+    /* background-color: var(--header-btn-bg-col-hover); */
+    /* box-shadow: var(--outset-shadow); */
     font-weight: bold;
     border: none;
+    font-size: var(--header-btn-fontsize);
 }
 
 .header-actions-2 button:active{
     border: none;
-    box-shadow: var(--outset-shadow-btn-active);
+    background-color: var(--header-btn-bg-col-hover);
+    /* box-shadow: var(--outset-shadow-btn-active); */
 }
 
 
