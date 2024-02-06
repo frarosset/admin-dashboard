@@ -26,6 +26,12 @@ function init(){
 
     let notificationsDiv = document.querySelector('.header-actions-1 .notifications');
     notificationsDiv.addEventListener('click',toggleSetStatus);
+
+    let likeDivs = document.querySelectorAll('.main-itm-project .like');
+    likeDivs.forEach((itm) => itm.addEventListener('click',toggleSetStatus));
+
+    let watchDivs = document.querySelectorAll('.main-itm-project .watch');
+    watchDivs.forEach((itm) => itm.addEventListener('click',toggleSetStatus));
 }
 
 
