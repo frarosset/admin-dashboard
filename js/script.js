@@ -21,8 +21,17 @@ function toggleNavStatus(e){
 }
 
 function initNavStatus(navToggle){
-    navToggle.classList.add('set');
-    navToggle.itsDashboard.classList.add('showNav');
+    /* default behaviour */
+    navToggle.classList.remove('set');
+    navToggle.itsDashboard.classList.remove('showNav');
+
+    /* Show nav bar only in desktop mode (when supported)*/
+    /* Use JavaScript Media Queries*/
+    let mediaQuery = window.matchMedia('only screen and (min-width: 1024px)');    
+    if (mediaQuery.matches){
+        navToggle.classList.add('set');
+        navToggle.itsDashboard.classList.add('showNav');
+    }
 }
 
 function init(){
