@@ -26,6 +26,7 @@
     --col-highlight:            var(--col-accent-dark);
 
     --header-txt-col:           var(--col-txt);
+    --nav-branding-with-toggle-color: var(--col-accent-medium);
     --nav-itm-txt-col:          var(--col-accent-light);
     --nav-itm-txt-col-hover:    var(--col-txt);
     --main-h2-col:              var(--col-txt);
@@ -110,6 +111,7 @@
 
     /* Images / avatars / icons size */
     --header-icon-len:         1.5rem;
+    --nav-branding-with-toggle-icon-len: 2.5rem;
     --nav-itm-icon-len:        1.5rem;
     --nav-itm-icon-tablet-min-len: calc(4*var(--nav-itm-fontsize));
     --hello-avatar-icon-len:   4rem;
@@ -414,6 +416,7 @@ header{
     gap: 0;
     font-size: 0;
     line-height: calc(var(--txt-lineheight)*var(--header-btn-fontsize));
+    user-select: none;   
 }
 
 .header-actions-2 button:hover{
@@ -452,6 +455,7 @@ nav{
 a.branding{
     text-align: center;
     font-size: var(--branding-fontsize);
+    user-select: none;
 }
 
 .branding-part1{
@@ -507,6 +511,7 @@ ul.nav-list{
 
 .nav-itm a{
     width: 100%;
+    user-select: none;    
 }
 
 .nav-sep{
@@ -791,6 +796,43 @@ main h2{
     line-clamp: var(--main-itm-announcements-description-max-lines);
 }
 
+/* || Toggle nav */
+
+.nav-branding-with-toggle{
+    font-size: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.nav-branding-with-toggle::after{
+    display: inline-block;
+    content:"";
+    width:  var(--nav-branding-with-toggle-icon-len); 
+    height: var(--nav-branding-with-toggle-icon-len); 
+    background-size: var(--nav-branding-with-toggle-icon-len) var(--nav-branding-with-toggle-icon-len);
+    background-color: var(--nav-itm-icon-col);
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+}
+
+.nav-branding-with-toggle:hover::after{
+    background-color: var(--nav-branding-with-toggle-color);
+}
+
+.nav-branding-with-toggle~.nav-hr,
+.nav-branding-with-toggle~.nav-list{
+    display: none;
+}
+
+.nav-branding-with-toggle.set~.nav-hr,
+.nav-branding-with-toggle.set~.nav-list{
+    display: flex;
+}
+
 /* || Transitions */
 
 *:hover,
@@ -853,7 +895,13 @@ main h2{
         grid-template-rows: max-content 1fr;
         grid-template-areas: 
             'nav header'
-            'nav main'
+            'main main'
+    }
+
+    .dashboard.showNav{
+        grid-template-areas: 
+            'nav header'
+            'nav main';
     }
 
     header{
@@ -914,6 +962,15 @@ main h2{
     mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>share-variant</title><path d="M18,16.08C17.24,16.08 16.56,16.38 16.04,16.85L8.91,12.7C8.96,12.47 9,12.24 9,12C9,11.76 8.96,11.53 8.91,11.3L15.96,7.19C16.5,7.69 17.21,8 18,8A3,3 0 0,0 21,5A3,3 0 0,0 18,2A3,3 0 0,0 15,5C15,5.24 15.04,5.47 15.09,5.7L8.04,9.81C7.5,9.31 6.79,9 6,9A3,3 0 0,0 3,12A3,3 0 0,0 6,15C6.79,15 7.5,14.69 8.04,14.19L15.16,18.34C15.11,18.55 15.08,18.77 15.08,19C15.08,20.61 16.39,21.91 18,21.91C19.61,21.91 20.92,20.61 20.92,19A2.92,2.92 0 0,0 18,16.08Z" /></svg>');
 }
 
+
+
+.nav-branding-with-toggle::after{
+    mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>chevron-down</title><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>');
+}
+
+.nav-branding-with-toggle.set::after{
+    mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>chevron-up</title><path d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" /></svg>');
+}
 
 
 #nav-home::before{
