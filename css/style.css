@@ -501,7 +501,7 @@ ul.nav-list{
     mask-position: center;
 }
 
-.nav-itm span{
+.nav-itm a{
     width: 100%;
 }
 
@@ -817,7 +817,7 @@ main h2{
         min-width: var(--nav-itm-icon-tablet-min-len);
     }
     
-    .nav-itm span{
+    .nav-itm a{
         text-align: center;
     }
 }
