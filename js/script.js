@@ -1,8 +1,5 @@
-function setSearchFocusOnClick(e){
+function setSearchFocus(e){
     let searchDiv = e.target;
-
-    console.log(e)
-    console.log(searchDiv)
 
     // Temporarly disable the click on this element disable:    
     searchDiv.style.pointerEvents = 'none';
@@ -16,13 +13,19 @@ function setSearchFocusOnClick(e){
 }
 
 
+function toggleSetStatus(e){
+    e.target.classList.toggle('set');
+}
+
+
+
 function init(){
     let searchDiv = document.querySelector('.header-actions-1 .search');
+    searchDiv.addEventListener('click',setSearchFocus);
 
-    console.log(searchDiv);
 
-    searchDiv.addEventListener('click',setSearchFocusOnClick);
-
+    let notificationsDiv = document.querySelector('.header-actions-1 .notifications');
+    notificationsDiv.addEventListener('click',toggleSetStatus);
 }
 
 
