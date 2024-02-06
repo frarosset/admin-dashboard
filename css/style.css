@@ -135,8 +135,12 @@
     --outset-shadow-btn-active: 2px 2px 5px var(--col-accent-medium);
     --inset-shadow: 2px 2px 2px var(--col-accent-light) inset;
 
-    /* Animations on hover / focus / ...*/
-    --time-transition-hover: 0.2s;
+    /* Animations on hover / active / ...*/
+    --time-transition-color:            0.2s;
+    --time-transition-bg-color:         0.6s;
+    --time-transition-transform:        0.2s;
+    --time-transition-project-img-width:1s;
+    --time-transition-active:           0.2s;
 }
 
 
@@ -496,14 +500,14 @@ ul.nav-list{
 }
 
 .nav-itm:hover,
-.nav-itm:focus{
+.nav-itm:active{
     background-color: var(--nav-itm-bg-col-hover);
     color: var(--nav-itm-txt-col-hover);
     font-weight: bold;
 }
 
 .nav-itm:hover::before,
-.nav-itm:focus::before{
+.nav-itm:active::before{
     background-color: var(--nav-itm-icon-col-hover);
 }
 
@@ -566,7 +570,7 @@ main h2{
     gap: var(--main-projects-list-gap);
 }
 
-.main-box-project.main-box{
+.main-box-project{
     display: grid;
     grid-template-columns: var(--main-itm-project-image-width) 1fr;
     grid-template-areas:
@@ -712,22 +716,22 @@ main h2{
 
 
 .main-itm-announcements:hover,
-.main-itm-announcements:focus,
+.main-itm-announcements:active,
 .main-itm-trending:hover,
-.main-itm-trending:focus{
+.main-itm-trending:active{
     background-color: var(--main-box-bg-col-hover);
     box-shadow: var(--inset-shadow);
 }
 
 .main-itm-announcements:hover .title,
-.main-itm-announcements:focus .title,
+.main-itm-announcements:active .title,
 .main-itm-trending:hover .username,
-.main-itm-trending:focus .username{
+.main-itm-trending:active .username{
     color: var(--main-box-icon-col-hover);
 }
 
 .main-itm-trending:hover .project-name,
-.main-itm-trending:focus .project-name{
+.main-itm-trending:active .project-name{
     font-weight: bold;
 }
 
@@ -759,6 +763,29 @@ main h2{
 .main-itm-announcements .description{
     -webkit-line-clamp: var(--main-itm-announcements-description-max-lines);
     line-clamp: var(--main-itm-announcements-description-max-lines);
+}
+
+/* || Transitions */
+
+*:hover,
+*:hover *{
+    transition: color var(--time-transition-color) ease-out, 
+                background-color var(--time-transition-bg-color) ease-in-out;
+}
+
+*:hover::before{ /* icons color / scale */
+    transition: background-color var(--time-transition-color) ease-out,
+                transform var(--time-transition-transform) ease-out;
+}
+
+*:hover .main-box-project{ /* project side image */
+    transition: grid-template-columns var(--time-transition-project-img-width) ease-out;
+}
+
+
+*:active, /* button push */
+*:active::before{ /* account avatar push */
+    transition: all var( --time-transition-active) ease-in-out;
 }
 
 /* || Responsiveness */
