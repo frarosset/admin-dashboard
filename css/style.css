@@ -53,6 +53,7 @@
     --hello-myinfo-fontsize:     1.5rem;
     --hello-myusername-fontsize: 0.8em;
     --header-btn-fontsize:       6px;
+    --header-search-width:       200px;
 
     --nav-itm-fontsize:          0.7rem;
 
@@ -141,6 +142,7 @@
     --time-transition-transform:        0.2s;
     --time-transition-project-img-width:1s;
     --time-transition-active:           0.2s;
+    --time-transition-search:           0.6s;
 }
 
 
@@ -369,18 +371,27 @@ header{
 }
 
 .header-actions-1 .actions div.search input{
-    display: none;
-    background-color: var(--header-search-bg-color);
-    padding: 0 var(--header-search-padding-lr);
+    max-width: 0;
+    width: 0;
     border: none;
     outline: none;
+    opacity: 0;
+    background-color: inherit;
 }
 
 .header-actions-1 .actions div.search:active input,
 .header-actions-1 .actions div.search input:focus{
-    display: initial;
+    max-width: var(--header-search-width);
+    width: var(--header-search-width);
+    padding: 0 var(--header-search-padding-lr);
     border: none;
     outline: none;
+    opacity: 1;
+}
+
+.header-actions-1 .actions div.search,
+.header-actions-1 .actions div.search input{
+    transition: all var(--time-transition-search) ease-in !important;
 }
 
 /* Header buttons (in header actions 2) */
